@@ -5,11 +5,22 @@ Written by
 """
 
 import numpy as np
+import math
 
 # Global Variables
 contr = 0.5 # rho for backtracking line search
 c_val = 10**(-4) # c for backtracking line search
 c2_val = 0.9 # New variable introduced for Homework 2
+
+def converge(prev,now):
+    """
+    Determines rate of convergence returns a scalar
+    """
+    minim = np.array([[1],[1]])
+    top = now - minim
+    bottom = prev - minim
+    P = math.log(np.linalg.norm(top))/math.log(np.linalg.norm(bottom))
+    return P
 
 def f(x):
     """
